@@ -17,7 +17,7 @@ query_engine = index.as_query_engine()
 
 @app.route('/')
 def home():
-    return open('templates/index.html').read()
+    return open('client/index.html').read()
 
 
 @app.route('/x')

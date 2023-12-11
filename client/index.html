@@ -6,7 +6,7 @@
     <!-- Includi HTMX da CDN -->
     <script src="https://unpkg.com/htmx.org@1.4.1/dist/htmx.min.js"></script>
 
-
+ 
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
@@ -25,14 +25,28 @@
     <textarea id="question" style="height: 200px; width: 600px;" placeholder="what the author realised"></textarea>
 
     <br/>
+    <style>
+    .htmx-indicator {
+        display:none;
+        width: 40px;
+    }
+    .htmx-request .htmx-indicator{
+        display:inline;
+    }
+    .htmx-request.htmx-indicator{
+        display:inline;
+    }
+    </style>
+
     
     <button hx-post="https://ddbit.eu.pythonanywhere.com/postQuestion" 
-       
+        hx-indicator="#spinner"
         hx-target="#risposta" 
         hx-trigger="click"
         hx-vals='javascript:{"q": document.getElementById("question").value}'>
         Post question
     </button>
+    <img src="img/Spinner-1s-200px.svg" class="htmx-indicator" id="spinner" ></img>
 </div>
 
 
