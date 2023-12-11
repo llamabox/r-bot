@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini RAG</title>
+    <!-- Includi HTMX da CDN -->
+    <script src="https://unpkg.com/htmx.org@1.4.1/dist/htmx.min.js"></script>
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+      
+</head>
+<body>
+
+<div class="container">    
+<h1>RAG minidemo with Llamaindex & OpenAI</h1>
+
+<a href="http://www.paulgraham.com/articles.html" target="_blank">Trained on some essays of Paul Graham</a>
+</div>
+
+<div class="container">
+    <textarea id="question" style="height: 200px; width: 600px;" placeholder="what the author realised"></textarea>
+
+    <br/>
+    
+    <button hx-post="https://ddbit.eu.pythonanywhere.com/postQuestion" 
+       
+        hx-target="#risposta" 
+        hx-trigger="click"
+        hx-vals='javascript:{"q": document.getElementById("question").value}'>
+        Post question
+    </button>
+</div>
+
+
+<!-- Div per mostrare la risposta -->
+<div class="container" id="risposta"></div>
+
+</body>
+</html>
+
+
