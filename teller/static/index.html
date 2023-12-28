@@ -18,17 +18,33 @@
 <div class="container">    
 <h1>RAG minidemo with Llamaindex & OpenAI</h1>
 
-<a href="https://www.linkedin.com/in/massimochiriatti/" target="_blank">
-    Trained on some essays of Massimo Chiriatti
-</a>
+<p>
+    <a href="https://www.linkedin.com/in/massimochiriatti/" target="_blank">
+        Trained on some essays of Massimo Chiriatti
+    </a>
+</p>
+
+<p>
+    Pre-fetched question:
+    <a href="#" id="testQuestionButton">L'AI ci ruberà il lavoro?</a>
+</p>
+
+<script>
+    document.getElementById('testQuestionButton').addEventListener('click', function() {
+        document.getElementById('question').value = 'L\'AI ci ruberà il lavoro?';
+    });
+</script>
+
+
+
 </div>
 
 <div class="container">
-    <textarea id="question" 
+    <textarea 
+        id="question" 
         style="height: 200px; width: 600px;" 
-        placeholder="Ask R. Massimo anything(*)">
-    </textarea>
-<br>
+        placeholder="Ask R. Massimo anything(*)"></textarea>
+    <br/>
         
         (*)we adopt the 
         <a href="https://www.linkedin.com/feed/update/urn:li:activity:7146081835490463744/" target="_blank">
@@ -49,15 +65,13 @@
     </style>
 
     
-    <button hx-post="/postQuestion" 
+    <button 
+        hx-post="/postQuestion" 
         hx-indicator="#spinner"
         hx-target="#risposta" 
-        hx-swap="afterbegin"
         hx-trigger="click"
-        hx-vals='js:{"q": document.getElementById("question").value}'
-
-        >
-        Post question
+        hx-vals='javascript:{"q": document.getElementById("question").value}'>
+        Ask R. Massimo
     </button>
     <img src="img/Spinner-1s-200px.svg" class="htmx-indicator" id="spinner" ></img>
 </div>
