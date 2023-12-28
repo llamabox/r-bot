@@ -1,7 +1,7 @@
 
 # A very simple Flask Hello World app for you to get started with...
 
-from flask import Flask, request, render_template
+from flask import Flask, request, redirect
 from flask_cors import CORS
 from llama_index import VectorStoreIndex, SimpleDirectoryReader
 import os
@@ -17,14 +17,8 @@ query_engine = index.as_query_engine()
 
 @app.route('/')
 def home():
-    return open('client/index.html').read()
+    return redirect("/static/index.html", code=302)
 
-
-@app.route('/x')
-def tell():
-    completion = query_engine.query("What did the author do growing up?")
-    #print(completion)
-    return str(completion)
 
 
 @app.route('/ask')
