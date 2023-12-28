@@ -18,12 +18,22 @@
 <div class="container">    
 <h1>RAG minidemo with Llamaindex & OpenAI</h1>
 
-<a href="http://www.paulgraham.com/articles.html" target="_blank">Trained on some essays of Paul Graham</a>
+<a href="https://www.linkedin.com/in/massimochiriatti/" target="_blank">
+    Trained on some essays of Massimo Chiriatti
+</a>
 </div>
 
 <div class="container">
-    <textarea id="question" style="height: 200px; width: 600px;" placeholder="what the author realised"></textarea>
-
+    <textarea id="question" 
+        style="height: 200px; width: 600px;" 
+        placeholder="Ask R. Massimo anything(*)">
+    </textarea>
+<br>
+        
+        (*)we adopt the 
+        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7146081835490463744/" target="_blank">
+            convention from David Orban to introduce
+        </a> himself as R. (Name) when referring to his own AI twin
     <br/>
     <style>
     .htmx-indicator {
@@ -42,8 +52,11 @@
     <button hx-post="/postQuestion" 
         hx-indicator="#spinner"
         hx-target="#risposta" 
+        hx-swap="afterbegin"
         hx-trigger="click"
-        hx-vals='javascript:{"q": document.getElementById("question").value}'>
+        hx-vals='js:{"q": document.getElementById("question").value}'
+
+        >
         Post question
     </button>
     <img src="img/Spinner-1s-200px.svg" class="htmx-indicator" id="spinner" ></img>

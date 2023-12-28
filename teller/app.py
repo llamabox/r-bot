@@ -31,6 +31,6 @@ def ask():
 def postQuestion():
     question = request.form['q']
     completion = query_engine.query(question)
-    return f"{question} : {completion}"
+    return f"{completion}"
 
 

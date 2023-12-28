@@ -14,12 +14,13 @@ Upgrade pip
 pip install --upgrade pip
 ```
 
-Then install Flask, cors and llama_index
+Then install Flask and the other dependencies
 
 ```
 pip install flask
 pip install flask_cors
 pip install llama_index
+pip install pypdf
 ```
 Then run the app
 ```
