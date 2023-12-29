@@ -1,3 +1,5 @@
 .openai
 doc/*
 .flaskenv/*
+telegram-bot/.secret
+telegram-bot/.tgbot/*
