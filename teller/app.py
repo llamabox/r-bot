@@ -4,6 +4,7 @@
 from flask import Flask, request, redirect
 from flask_cors import CORS
 from llama_index import VectorStoreIndex, SimpleDirectoryReader
+from llama_index.llms import Ollama
 import os
 
 #os.environ['OPENAI_API_KEY'] = open(".openai").read().strip()
@@ -12,7 +13,12 @@ app = Flask(__name__)
 CORS(app)
 
 documents = SimpleDirectoryReader("docs").load_data()
+
 index = VectorStoreIndex.from_documents(documents)
+
+llm = Ollama(model="mistral")
+service_context = ServiceContext.from_defaults(llm=llm,embed_model="local")
+
 query_engine = index.as_query_engine()
 
 @app.route('/')
