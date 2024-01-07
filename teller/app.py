@@ -1,43 +1,49 @@
 
-# A very simple Flask Hello World app for you to get started with...
-
-from flask import Flask, request, redirect
-from flask_cors import CORS
-from llama_index import VectorStoreIndex, SimpleDirectoryReader, ServiceContext
+from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
+import qdrant_client
 from llama_index.llms import Ollama
-import os
+from llama_index import (
+    VectorStoreIndex,
+    ServiceContext,
+)
+from llama_index.vector_stores.qdrant import QdrantVectorStore
 
 #os.environ['OPENAI_API_KEY'] = open(".openai").read().strip()
 
-app = Flask(__name__)
-CORS(app)
+# re-initialize the vector store
+client = qdrant_client.QdrantClient(
+    path="./qdrant_data"
+)
+vector_store = QdrantVectorStore(client=client, collection_name="tweets")
 
-documents = SimpleDirectoryReader("docs").load_data()
-
-
-
+# get the LLM again
 llm = Ollama(model="mistral")
 service_context = ServiceContext.from_defaults(llm=llm,embed_model="local")
-index = VectorStoreIndex.from_documents(documents)
+# load the index from the vector store
+index = VectorStoreIndex.from_vector_store(vector_store=vector_store,service_context=service_context)
 
-query_engine = index.as_query_engine()
 
+app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+# This is just so you can easily tell the app is running
 @app.route('/')
-def home():
-    return redirect("/static/index.html", code=302)
+def hello_world():
+    return 'Hello, World!'
 
 
+@app.route('/process_form', methods=['POST'])
+@cross_origin()
+def process_form():
+    query = request.form.get('query')
+    if query is not None:
+        query_engine = index.as_query_engine(similarity_top_k=20)
+        response = query_engine.query(query)
+        return jsonify({"response": str(response)})
+    else:
+        return jsonify({"error": "query field is missing"}), 400
 
-@app.route('/ask')
-def ask():
-    question = request.args.get('q')
-    completion = query_engine.query(question)
-    return f"{question} ,  {completion}"
-
-@app.route('/postQuestion',  methods=['POST'])
-def postQuestion():
-    question = request.form['q']
-    completion = query_engine.query(question)
-    return f"{completion}"
-
-
+if __name__ == '__main__':
+    app.run()
