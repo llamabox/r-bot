@@ -3,7 +3,7 @@
 
 from flask import Flask, request, redirect
 from flask_cors import CORS
-from llama_index import VectorStoreIndex, SimpleDirectoryReader
+from llama_index import VectorStoreIndex, SimpleDirectoryReader, ServiceContext
 from llama_index.llms import Ollama
 import os
 
@@ -14,10 +14,11 @@ CORS(app)
 
 documents = SimpleDirectoryReader("docs").load_data()
 
-index = VectorStoreIndex.from_documents(documents)
+
 
 llm = Ollama(model="mistral")
 service_context = ServiceContext.from_defaults(llm=llm,embed_model="local")
+index = VectorStoreIndex.from_documents(documents)
 
 query_engine = index.as_query_engine()
 
