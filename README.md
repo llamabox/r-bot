@@ -1,5 +1,8 @@
 # Rag PoC with LLamaIndex
 
+## Note
+This branch is about using Mistral and Ollama based on this [blog post instructions](https://blog.llamaindex.ai/running-mixtral-8x7-locally-with-llamaindex-e6cebeabe0ab)
+
 ## Instructions
 
 Create a python environment and activate it
