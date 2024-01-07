@@ -6,7 +6,7 @@ from flask_cors import CORS
 from llama_index import VectorStoreIndex, SimpleDirectoryReader
 import os
 
-os.environ['OPENAI_API_KEY'] = open(".openai").read().strip()
+#os.environ['OPENAI_API_KEY'] = open(".openai").read().strip()
 
 app = Flask(__name__)
 CORS(app)
