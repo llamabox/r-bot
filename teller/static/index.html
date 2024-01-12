@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Mini RAG</title>
+    <title>R.Massimo Agent</title>
     <!-- Includi HTMX da CDN -->
     <script src="https://unpkg.com/htmx.org@1.4.1/dist/htmx.min.js"></script>
 
@@ -16,22 +16,32 @@
 <body>
 
 <div class="container">    
-<h1>RAG minidemo with Llamaindex & OpenAI</h1>
+<h1>R.Massimo(*) Agent</h1>
 
 <p>
     <a href="https://www.linkedin.com/in/massimochiriatti/" target="_blank">
-        Trained on some essays of Massimo Chiriatti
+        Retrieval Augmented Generative AI based on some essays of Massimo Chiriatti
     </a>
 </p>
 
 <p>
-    Pre-fetched question:
-    <a href="#" id="testQuestionButton">L'AI ci ruberà il lavoro?</a>
+    Pre-fetched questions:<br/>
+    <a href="#" id="testQuestionButton1">L'AI ci ruberà il lavoro?</a><br/>
+    <a href="#" id="testQuestionButton2">Dobbiamo tassare i robot?</a><br/>
+    <a href="#" id="testQuestionButton3">Che modello AI sei?</a><br/>
+
 </p>
 
 <script>
-    document.getElementById('testQuestionButton').addEventListener('click', function() {
+
+    document.getElementById('testQuestionButton1').addEventListener('click', function() {
         document.getElementById('question').value = 'L\'AI ci ruberà il lavoro?';
+    });
+    document.getElementById('testQuestionButton2').addEventListener('click', function() {
+        document.getElementById('question').value = 'Dobbiamo tassare i robot?';
+    });
+    document.getElementById('testQuestionButton3').addEventListener('click', function() {
+        document.getElementById('question').value = 'Which AI model are you?';
     });
 </script>
 
@@ -42,15 +52,10 @@
 <div class="container">
     <textarea 
         id="question" 
-        style="height: 200px; width: 600px;" 
+        style="height: 120px; width: 600px;" 
         placeholder="Ask R. Massimo anything(*)"></textarea>
     <br/>
         
-        (*)we adopt the 
-        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7146081835490463744/" target="_blank">
-            convention from David Orban to introduce
-        </a> himself as R. (Name) when referring to his own AI twin
-    <br/>
     <style>
     .htmx-indicator {
         display:none;
@@ -74,15 +79,21 @@
         Ask R. Massimo
     </button>
     <img src="img/Spinner-1s-200px.svg" class="htmx-indicator" id="spinner" ></img>
+    <br/><br/>
 </div>
 
 
 <!-- Div per mostrare la risposta -->
-<div class="container" id="risposta"></div>
+<div class="container" id="risposta" style="background-color: beige;"></div>
 <hr/>
 <div class="container">
-    RAG minidemo is a PoC by <a href="https://digitaldavide.me" target="_blank">Davide Carboni</a> 2023.
+    R.Massimo is a PoC by <a href="https://digitaldavide.me" target="_blank">Davide Carboni</a> 2023-24.
     Use it at your own risk. AI bots are not a source of truth.
+    <br/>
+    (*)we adopt the 
+    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7146081835490463744/" target="_blank">
+        convention from David Orban to introduce
+    </a> himself as R. (Name) when referring to his own AI twin
 </div>
 </body>
 </html>
