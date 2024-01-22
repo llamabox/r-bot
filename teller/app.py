@@ -36,6 +36,9 @@ CORS(app)
 def home():
     return redirect("/static/index.html", code=302)
 
+@app.route('/chat')
+def chat():
+    return redirect("/static/chat/index.html", code=302)
 
 
 @app.route('/ask')
