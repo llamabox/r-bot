@@ -17,9 +17,11 @@ pip install --upgrade pip
 Then install Flask and the other dependencies
 
 ```
+pip install llama-index
 pip install flask
 pip install flask_cors
-pip install llama_index
+pip install transformers
+pip install torch
 pip install pypdf
 ```
 Then run the app
