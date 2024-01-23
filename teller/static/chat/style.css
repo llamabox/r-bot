@@ -35,6 +35,7 @@ body {
   overflow-y: auto;
   max-height: 100vh;
   padding-bottom: 150px;
+  padding-top: 50px;
 }
 :where(.chat-container, textarea)::-webkit-scrollbar {
   width: 6px;
@@ -255,4 +256,18 @@ span.material-symbols-rounded {
   span.material-symbols-rounded {
     font-size: 1.25rem!important;
   }
+}
+
+.floating-top-bar {
+  position: fixed; /* Keeps the bar fixed at the top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width of the page */
+  height: 1.5em; /* Adjust as needed for a single line of text */
+  background-color: #dcd9c2ca; /* Choose your color */
+  border-bottom: 1px solid #ddd; /* Optional border */
+  z-index: 1000; /* Ensures the bar stays on top */
+  padding: 0 10px; /* Optional padding */
+  box-sizing: border-box;
+  line-height: 1.5em; /* Ensures the text is vertically centered */
 }
