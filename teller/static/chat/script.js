@@ -46,10 +46,10 @@ const getChatResponse = async (incomingChatDiv) => {
             "Authorization": `Bearer ${API_KEY}`
         },
         body: JSON.stringify({
-            model: "gpt-3.5-turbo",
+            model: "mistral",
             messages: [{"role":"user", "content": userText}],
-            max_tokens: 2048,
-            temperature: 0.2,
+            max_tokens: 8000,
+            temperature: 0.1,
             n: 1,
             stop: null
         })

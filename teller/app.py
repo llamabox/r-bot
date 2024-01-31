@@ -20,8 +20,8 @@ index = VectorStoreIndex.from_documents(
     documents, service_context=service_context
 )
 
-query_engine = index.as_query_engine()
-
+#query_engine = index.as_query_engine()
+chat_engine = index.as_chat_engine(chat_mode="condense_plus_context", verbose=False)
 
 
 
@@ -44,24 +44,27 @@ def chat():
 @app.route('/ask')
 def ask():
     question = request.args.get('q')
-    completion = query_engine.query(question)
+    #completion = query_engine.query(question)
+    completion = chat_engine.chat(question);
     return f"{question} ,  {completion}"
 
 @app.route('/postQuestion',  methods=['POST'])
 def postQuestion():
     question = request.form['q']
-    completion = query_engine.query(question)
+    #completion = query_engine.query(question)
+    completion = chat_engine.chat(question)
     return f"{completion}"
 
 # route with openAI syntax
 @app.route('/v1/chat/completions',  methods=['POST'])
 def completions():
     payload = request.json
-    print(f"payload: {payload}")
+    #print(f"payload: {payload}")
     question = payload["messages"][0]["content"]
     print(question)
 
-    answer = query_engine.query(question)
+    #answer = query_engine.query(question)
+    answer = chat_engine.chat(question)
     print("** ANSWER **")
     print(answer)
 
