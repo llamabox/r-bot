@@ -30,6 +30,9 @@ body {
   background: var(--outgoing-chat-bg);
 }
 
+a {
+  color: orange;
+}
 /* Chats container styling */
 .chat-container {
   overflow-y: auto;

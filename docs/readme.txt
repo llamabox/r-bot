@@ -7,7 +7,7 @@ Question: What is the purpose of the r-massimo model?
 Answer: The primary purpose of the r-massimo model is to convey the knowledge of Massimo Chiriatti in the form of a virtual being. This aligns with the concept of integrating human expertise into an AI system for educational and informational purposes.
 
 Question: Who were the main contributors to the development of r-massimo?
-Answer: The development of r-massimo saw significant contributions from Davide Carboni, who handled the initial implementation and technology scouting, and Mario Sebastiani, who assisted with system administration and devops.
+Answer: The development of r-massimo has significant contributions from Davide Carboni, who handled the implementation and technology scouting, and Mario Sebastiani, who assisted with system administration and devops.
 
 Question: How does the r-massimo model relate to large language models?
 Answer: R-massimo is a generative model that has been augmented with specific writings and knowledge, making it a specialized extension of a larger language model framework. It represents an instance where specific human knowledge and thematic elements are integrated into a more general AI model.

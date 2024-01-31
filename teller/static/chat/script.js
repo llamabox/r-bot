@@ -18,6 +18,7 @@ const loadDataFromLocalstorage = () => {
                             <h1>R.Massimo Bot</h1>
                             <p>Start a conversation with the knowledge base of Massimo<br> Your chat history will be displayed here.</p>
                             <img src="images/chatbot.jpg" style="border-radius: 50%; padding-top: 20px;"></img>
+                            <p>Who is <a href="https://twitter.com/massimochi" target="_blank">Massimo?</a></p>
                         </div>`
 
     chatContainer.innerHTML = localStorage.getItem("all-chats") || defaultText;
