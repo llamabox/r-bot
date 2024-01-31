@@ -24,6 +24,11 @@ pip install transformers
 pip install torch
 pip install pypdf
 ```
+Don't forget to install Ollama and launch it
+
+https://github.com/ollama/ollama
+
+
 Then run the app
 ```
 flask --app teller.app  run
