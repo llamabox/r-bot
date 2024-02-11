@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summarize URL</title>
+    <style>
+        /* Stile per lo spinner di caricamento */
+        .loader {
+            border: 6px solid #f3f3f3; /* Colore dello sfondo */
+            border-top: 6px solid #3498db; /* Colore dello spinner */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: none; /* Nasconde lo spinner di default */
+        }
+
+        /* Animazione dello spinner */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const urlEncodedData = new URLSearchParams(formData).toString();
+            const resultDiv = document.getElementById('result');
+            const loader = document.getElementById('loader');
+            
+            // Mostra lo spinner
+            loader.style.display = 'block';
+            resultDiv.textContent = ''; // Pulisce i risultati precedenti
+
+            try {
+                const response = await fetch('/summarize', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: urlEncodedData
+                });
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.textContent = 'Errore durante la chiamata API: ' + error.message;
+            } finally {
+                // Nasconde lo spinner una volta che i dati sono stati ricevuti
+                loader.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+
+<h2>URL Summarizer</h2>
+
+<form id="urlForm" onsubmit="handleSubmit(event)">
+    <label for="url">URL:</label>
+    <input type="text" id="url" name="url" required>
+    <button type="submit">Summarize</button>
+</form>
+
+<!-- Spinner di caricamento -->
+<div id="loader" class="loader"></div>
+
+<!-- Div per visualizzare il risultato -->
+<div id="result" style="white-space: pre-wrap;"></div>
+
+</body>
+</html>
